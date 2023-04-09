@@ -41,7 +41,6 @@ export default function App() {
               <section className="orderForm">
                 {" "}
                 <OrderForm />
-                Sipariş Ver
               </section>
             </Route>
           </Switch>
