@@ -11,23 +11,30 @@ export default function App() {
         <header>
           <h2>Teknolojik Yemekler</h2>
           <nav>
-            <NavLink activeClassName="active" exact to="/">
-              Anasayfa
-            </NavLink>
+            <button>
+              <NavLink activeClassName="active" exact to="/">
+                <p>Anasayfa</p>
+              </NavLink>
+            </button>
             <br></br>
-            <NavLink activeClassName="active" to="/OrderForm">
-              Sipariş Ver
-            </NavLink>
+            <button>
+              <NavLink
+                activeClassName="active"
+                className="order"
+                to="/OrderForm"
+              >
+                <p>Sipariş Ver</p>
+              </NavLink>
+            </button>
           </nav>
         </header>
-        <main>
+        <div className="content-container">
           <h1>Teknolojik Yemekler</h1>
           <Switch>
             <Route exact path="/" component={Main}>
               <section className="main">
                 {" "}
                 <Main />
-                Anasayfa
               </section>
             </Route>
             <Route path="/OrderForm" component={OrderForm}>
@@ -38,7 +45,7 @@ export default function App() {
               </section>
             </Route>
           </Switch>
-        </main>
+        </div>
       </div>
     </div>
   );

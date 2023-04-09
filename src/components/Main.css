@@ -1,3 +1,20 @@
-* {
+.main-container {
   background-color: #ce2829;
+}
+
+.order-button {
+  position: absolute;
+  align-items: center;
+  border: solid black;
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: #7c991d;
+}
+
+.hungry {
+  text-decoration: none;
+  font-size: larger;
+  color: blue;
+  font-weight: bolder;
+  background-color: #7c991d;
 }
