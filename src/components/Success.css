@@ -1,0 +1,30 @@
+.success {
+  background-color: #ce2829;
+  height: 100vh;
+  /* text-align: center; */
+  font-size: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.congrats {
+  margin-top: 10rem;
+  color: white;
+}
+
+#toMain {
+  /* position: absolute; */
+
+  border: none;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: gold;
+  color: black;
+  margin-top: 30px;
+  text-decoration: none;
+  font-size: large;
+  color: black;
+  font-weight: bolder;
+}

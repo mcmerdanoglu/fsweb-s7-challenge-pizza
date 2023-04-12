@@ -3,6 +3,7 @@ import "./App.css";
 import { Switch, Route, NavLink } from "react-router-dom";
 import Main from "./components/Main";
 import OrderForm from "./components/OrderForm";
+import Success from "./components/Success";
 
 export default function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -47,6 +48,12 @@ export default function App() {
               <section className="orderForm">
                 {" "}
                 <OrderForm addPizza={addPizza} />
+              </section>
+            </Route>
+            <Route path="/Success" component={Success}>
+              <section className="success">
+                {" "}
+                <Success />
               </section>
             </Route>
           </Switch>

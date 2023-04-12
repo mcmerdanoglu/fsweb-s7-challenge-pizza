@@ -1,13 +1,8 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-image: url("./components/MVP-Home.png");
+  /* background-image: url("./components/MVP-Home.png"); */
   /* background-repeat: no-repeat; */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -50,8 +45,8 @@ header .active,
   /* background-color: #b8cf0d; */
 }
 
-.content {
-  height: 80vh;
+/* .content {
+  height: 100vh;
 }
 
 .main,
@@ -60,16 +55,4 @@ h1 {
   height: 61px;
   background-color: #ce2829;
   color: white;
-}
-/* .orderForm {
-  background-color: #4390a5;
 } */
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

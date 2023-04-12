@@ -1,6 +1,8 @@
 .main-container {
   background-color: #ce2829;
-  height: 400px;
+  /* height: 400px; */
+  height: 100vh;
+  background-image: url("./mvp-banner.png");
 }
 
 .order-button {
@@ -10,7 +12,6 @@
   border-radius: 20px;
   padding: 1rem;
   background-color: gold;
-  color: gold;
   margin-top: 30px;
 }
 
@@ -19,4 +20,12 @@
   font-size: larger;
   color: black;
   font-weight: bolder;
+}
+
+.main,
+h1 {
+  margin: 0;
+  height: 61px;
+  background-color: #ce2829;
+  color: white;
 }
