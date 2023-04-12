@@ -14,17 +14,21 @@
   color: white;
 }
 
-#toMain {
-  /* position: absolute; */
-
+.toMain {
+  box-shadow: 0 0 5px cyan, 0 0 25px cyan;
   border: none;
   border-radius: 20px;
   padding: 1rem;
-  background-color: gold;
+  background-color: cyan;
   color: black;
   margin-top: 30px;
   text-decoration: none;
   font-size: large;
   color: black;
   font-weight: bolder;
+}
+
+.toMain:hover {
+  box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan,
+    0 0 200px cyan;
 }

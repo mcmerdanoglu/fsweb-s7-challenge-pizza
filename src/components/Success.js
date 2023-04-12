@@ -13,7 +13,7 @@ function Success() {
       <div className="congrats">
         TEBRİKLER <br /> SİPARİŞİNİZ ALINDI!
         <br />
-        <button id="toMain" onClick={returnMain}>
+        <button className="toMain" onClick={returnMain}>
           ANASAYFAYA DÖN
         </button>
       </div>

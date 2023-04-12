@@ -190,7 +190,9 @@ function OrderForm(props) {
               Büyük
             </label>
             {errors.size !== "" && (
-              <div className="field-error">{errors.size}</div>
+              <div className="field-error">
+                <span>{errors.size}</span>
+              </div>
             )}
           </div>
           <div className="dough">

@@ -96,3 +96,7 @@ h5 {
   display: flex;
   gap: 1rem;
 }
+
+.total {
+  color: red;
+}
