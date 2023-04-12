@@ -23,7 +23,7 @@ export default function App() {
                 className="order"
                 to="/OrderForm"
               >
-                Sipariş Ver
+                Sipariş Oluştur
               </NavLink>
             </button>
           </nav>

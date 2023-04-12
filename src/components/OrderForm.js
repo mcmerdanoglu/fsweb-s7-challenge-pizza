@@ -3,12 +3,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
 
-const emptyPizza = { name: "", size: null, dough: "", toppings: [] };
+const emptyPizza = {
+  name: "",
+  size: null,
+  dough: "",
+  toppings: [],
+  special: "",
+};
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
     .required("İsim alanı zorunludur")
     .min(3, "İsim en az 3 karakter olmalı"),
+  size: Yup.string()
+    .oneOf(["kucuk", "orta", "buyuk"], "")
+    .required(),
+  dough: Yup.string()
+    .oneOf([1, 2, 3, 4, 5, 6, 7] /*0, ""*/)
+    .required(),
   //   size: Yup.string()
   //     .size("boyut alanında bir hata olabilir mi?")
   //     .required("eposta zorunlu"),
@@ -16,7 +28,7 @@ const formSchema = Yup.object().shape({
   //     .min(6, "şifre en az 6 hane olmalı")
   //     .required("şifre zorunlu"),
   toppings: Yup.array()
-    .min(1, "en az 1 malzeme seçin")
+    .min(3, "en az 3 malzeme seçin")
     .max(6, "en çok 6 malzeme seçin"),
 });
 
@@ -30,6 +42,7 @@ function OrderForm(props) {
     size: "",
     dough: "",
     toppings: "",
+    special: "",
   });
 
   //   useEffect(() => {
@@ -49,6 +62,7 @@ function OrderForm(props) {
       size: "",
       dough: "",
       toppings: "",
+      special: "",
     });
   };
 
@@ -107,12 +121,17 @@ function OrderForm(props) {
       size: formData.size,
       dough: formData.dough,
       toppings: formData.toppings,
+      special: formData.special,
     };
 
     axios
       .post("https://reqres.in/api/orders", postData)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error(error));
+      .then((response) =>
+        console.log("Siparişiniz başarıyla gönderildi:", response.data)
+      )
+      .catch((error) =>
+        console.error("Sipariş gönderilirken bir sorun oluştu:", error)
+      );
   };
 
   console.log("toppings:", toppings);
@@ -121,9 +140,10 @@ function OrderForm(props) {
     <div className="form">
       {/*isEditing <h2>Üye Düzenle</h2> :*/ <h2>Pizzanı Oluştur</h2>}
       <form onSubmit={handleSubmit} className="form-line">
-        <h4 htmlFor="name">
-          Pizza Adı:
+        <div className="name">
+          <h4 htmlFor="name">Pizza Adı:</h4>
           <input
+            placeholder="Örn: Position Absolute Acı Pizza"
             type="text"
             name="name"
             value={formData.name}
@@ -134,107 +154,223 @@ function OrderForm(props) {
               <span>{errors.name}</span>
             </div>
           )}
-        </h4>
-        <h4 htmlFor="size">Pizza Boyutu:</h4>
-        <label>
-          <input
-            onChange={handleChange}
-            value="small"
-            type="radio"
-            name="size"
-            checked={formData.size === "small" || false}
-          />
-          Küçük
-        </label>
-        <label>
-          <input
-            onChange={handleChange}
-            value="medium"
-            type="radio"
-            name="size"
-            checked={formData.size === "medium" || false}
-          />{" "}
-          Orta
-        </label>
-        <label>
-          <input
-            onChange={handleChange}
-            value="huge"
-            type="radio"
-            name="size"
-            checked={formData.size === "huge" || false}
-          />{" "}
-          Büyük
-        </label>
-        {errors.size !== "" && <div className="field-error">{errors.size}</div>}
-
-        <h4 htmlFor="dough">
-          Pizza Hamuru:
-          {/* <input
+        </div>
+        <div className="size-dough">
+          <div className="size">
+            <h4 htmlFor="size">Pizza Boyutu:</h4>
+            <label>
+              <input
+                onChange={handleChange}
+                value="small"
+                type="radio"
+                name="size"
+                checked={formData.size === "small" || false}
+              />
+              Küçük
+            </label>
+            <label>
+              <input
+                onChange={handleChange}
+                value="medium"
+                type="radio"
+                name="size"
+                checked={formData.size === "medium" || false}
+              />{" "}
+              Orta
+            </label>
+            <label>
+              <input
+                onChange={handleChange}
+                value="huge"
+                type="radio"
+                name="size"
+                checked={formData.size === "huge" || false}
+              />{" "}
+              Büyük
+            </label>
+            {errors.size !== "" && (
+              <div className="field-error">{errors.size}</div>
+            )}
+          </div>
+          <div className="dough">
+            <h4 htmlFor="dough">
+              Pizza Hamuru:
+              {/* <input
             type="text"
             name="dough"
             value={formData.dough}
             onChange={(event) => handleChange(event)}
-          /> */}
-          <select>
-            <option value="0">Hamur Seç</option>
-            <option value="1">İnce Hamur</option>
-            <option value="2">Normal Hamur</option>
-            <option value="3">Ekşi Mayalı</option>
-            <option value="4">Siyez Unlu</option>
-            <option value="5">Cevizli</option>
-            <option value="6">Zeytinyağlu</option>
-            <option value="7">Çövenotlu</option>
-          </select>
-          {errors.dough !== "" && (
-            <div className="field-error">
-              <span>{errors.dough}</span>
-            </div>
-          )}
-        </h4>
+          /> */}{" "}
+            </h4>
+            <select>
+              <option value="0">Hamur Seç</option>
+              <option value="1">İnce Hamur</option>
+              <option value="2">Normal Hamur</option>
+              <option value="3">Ekşi Mayalı</option>
+              <option value="4">Siyez Unlu</option>
+              <option value="5">Cevizli</option>
+              <option value="6">Zeytinyağlu</option>
+              <option value="7">Çövenotlu</option>
+            </select>
+            {errors.dough !== "" && (
+              <div className="field-error">
+                <span>{errors.dough}</span>
+              </div>
+            )}
+          </div>
+        </div>
         <div className="checkBox">
           <h4>Malzemeler:</h4>
-          <label htmlFor="toppings">
-            <input
-              type="checkbox"
-              name="toppings"
-              value="Mısır"
-              onChange={handleChange}
-              checked={formData.toppings.includes("Mısır")}
-            />
-            Mısır
+          <div className="checkBox-container">
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Misir"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Misir")}
+              />
+              Mısır
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Jambon"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Jambon")}
+              />
+              Jambon
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Parmesan"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Parmesan")}
+              />
+              Parmesan
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Sucuk"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Sucuk")}
+              />
+              Sucuk
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Sogan"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Sogan")}
+              />
+              Soğan
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Feslegen"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Feslegen")}
+              />
+              Fesleğen
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Kabak"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Kabak")}
+              />
+              Kabak
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Carpaccio"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Carpaccio")}
+              />
+              Carpaccio
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Roclette"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Roclette")}
+              />
+              Roclette
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Kekik"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Kekik")}
+              />
+              Kekik
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Mantar"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Mantar")}
+              />
+              Mantar
+            </label>
+            <label htmlFor="toppings">
+              <input
+                type="checkbox"
+                name="toppings"
+                value="Bacon"
+                onChange={handleChange}
+                checked={formData.toppings.includes("Bacon")}
+              />
+              Bacon
+            </label>
+          </div>
+          <div>
+            {errors.toppings !== "" && (
+              <div className="field-error">
+                <span data-cy="errorTopping">{errors.toppings}</span>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="special">
+          <label htmlFor="special">
+            <h4>Sipariş Notu:</h4>
+            <textarea
+              placeholder="Siparişinize eklemek istediğiniz bir not mar mı?"
+              className="special-note"
+              rows="4"
+              cols="50"
+            ></textarea>
           </label>
-          <label htmlFor="toppings">
-            <input
-              type="checkbox"
-              name="toppings"
-              value="Jambon"
-              onChange={handleChange}
-              checked={formData.toppings.includes("Jambon")}
-            />
-            Jambon
-          </label>
-          <label htmlFor="toppings">
-            <input
-              type="checkbox"
-              name="toppings"
-              value="Parmesan"
-              onChange={handleChange}
-              checked={formData.toppings.includes("Parmesan")}
-            />
-            Parmesan
-          </label>
-          {errors.toppings !== "" && (
-            <div className="field-error">
-              <span data-cy="errorTopping">{errors.toppings}</span>
-            </div>
-          )}
         </div>
         <button type="reset" onClick={handleReset}>
           Başa Dön
         </button>
-        <button className="submit" type="submit" disabled={isButtonDisabled}>
-          {/*isEditing ? "Edit Member" :*/ "Pizzanı Onayla"}
+        <button
+          className="submit-button"
+          type="submit"
+          disabled={isButtonDisabled}
+        >
+          {"Pizzanı Onayla"}
         </button>
       </form>
     </div>
