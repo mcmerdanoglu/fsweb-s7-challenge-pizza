@@ -18,14 +18,14 @@
 
 .App header,
 nav {
-  background-color: #b8cf0d;
+  background-color: #ce2829;
   height: 10vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
-  color: rgb(127, 139, 33);
+  color: white;
 }
 
 header button,
@@ -40,13 +40,13 @@ h2 {
 
 header button {
   margin-left: 20px;
-  background-color: #b8cf0d;
+  background-color: #ce2829;
 }
 
 header .active,
 .order {
   text-decoration: none;
-  color: rgb(17, 19, 19);
+  color: white;
   /* background-color: #b8cf0d; */
 }
 
@@ -61,9 +61,9 @@ h1 {
   background-color: #ce2829;
   color: white;
 }
-.orderForm {
+/* .orderForm {
   background-color: #4390a5;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
