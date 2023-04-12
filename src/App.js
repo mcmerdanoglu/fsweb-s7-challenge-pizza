@@ -5,6 +5,12 @@ import Main from "./components/Main";
 import OrderForm from "./components/OrderForm";
 
 export default function App() {
+  const [pizzas, setPizzas] = useState([]);
+
+  function addPizza(newPizza) {
+    setPizzas([...pizzas, newPizza]);
+  }
+
   return (
     <div className="App">
       <div className="content">
@@ -40,7 +46,7 @@ export default function App() {
             <Route path="/OrderForm" component={OrderForm}>
               <section className="orderForm">
                 {" "}
-                <OrderForm />
+                <OrderForm addPizza={addPizza} />
               </section>
             </Route>
           </Switch>

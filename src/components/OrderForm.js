@@ -1,4 +1,5 @@
 import "./OrderForm.css";
+import CounterButton from "./CounterButton";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
@@ -112,7 +113,7 @@ function OrderForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addMember(formData);
+    props.addPizza(formData);
     //setisEditing(false);
     setFormData(emptyPizza);
 
@@ -286,11 +287,11 @@ function OrderForm(props) {
               <input
                 type="checkbox"
                 name="toppings"
-                value="Kabak"
+                value="Tarator"
                 onChange={handleChange}
-                checked={formData.toppings.includes("Kabak")}
+                checked={formData.toppings.includes("Tarator")}
               />
-              Kabak
+              Tarator
             </label>
             <label htmlFor="toppings">
               <input
@@ -363,15 +364,26 @@ function OrderForm(props) {
           </label>
         </div>
         <button type="reset" onClick={handleReset}>
-          Başa Dön
+          Formu temizle
         </button>
-        <button
-          className="submit-button"
-          type="submit"
-          disabled={isButtonDisabled}
-        >
-          {"Pizzanı Onayla"}
-        </button>
+        <hr></hr>
+        <div className="lastSin">
+          <div className="counterButton">
+            <CounterButton />
+          </div>
+          <div className="conclusion">
+            <h3>Sipariş Toplamı</h3>
+            <h5 className="choice">Seçimler</h5>
+            <h5 className="total">Toplam</h5>
+            <button
+              className="submit-button"
+              type="submit"
+              disabled={isButtonDisabled}
+            >
+              {"Pizzanı Onayla"}
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
