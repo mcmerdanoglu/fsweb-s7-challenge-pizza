@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  background-image: url("./components/MVP-Home.png");
+  /* background-repeat: no-repeat; */
 }
 
 .App-logo {
@@ -20,26 +22,32 @@ nav {
   height: 10vh;
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: rgb(127, 139, 33);
 }
 
 header button,
 h2 {
-  background-color: rgb(74, 66, 95);
-  border-radius: 20px;
+  /* background-color: rgb(74, 66, 95); */
+  /* border-radius: 20px; */
+  border: none;
   padding: 5px;
+  height: 2px;
   font-size: large;
 }
 
-header p,
-.active,
+header button {
+  margin-left: 20px;
+  background-color: #b8cf0d;
+}
+
+header .active,
 .order {
   text-decoration: none;
   color: rgb(17, 19, 19);
-  background-color: #b8cf0d;
+  /* background-color: #b8cf0d; */
 }
 
 .content {
@@ -49,7 +57,9 @@ header p,
 .main,
 h1 {
   margin: 0;
+  height: 61px;
   background-color: #ce2829;
+  color: white;
 }
 .orderForm {
   background-color: #4390a5;

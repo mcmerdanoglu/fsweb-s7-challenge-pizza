@@ -17,7 +17,7 @@ function Main(props) {
             ACIKTIM!
           </Link>
         </button>
-        <img src="https://thumbs.dreamstime.com/b/pizza-rustic-italian-mozzarella-cheese-basil-leaves-35669930.jpg" />
+        {/* <img url="mvp-banner.png" /> */}
       </div>
     </div>
   );

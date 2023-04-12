@@ -10,10 +10,10 @@ export default function App() {
       <div className="content">
         <header>
           <h2>Teknolojik Yemekler</h2>
-          <nav>
+          <nav className="nav">
             <button>
               <NavLink activeClassName="active" exact to="/">
-                <p>Anasayfa</p>
+                Anasayfa
               </NavLink>
             </button>
             <br></br>
@@ -23,7 +23,7 @@ export default function App() {
                 className="order"
                 to="/OrderForm"
               >
-                <p>Sipariş Ver</p>
+                Sipariş Ver
               </NavLink>
             </button>
           </nav>
